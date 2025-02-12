@@ -1,0 +1,26 @@
+/*!
+ * Форма (Form).
+ *
+ * Расширение "Медиа диалоги".
+ * Модуль "Справочники".
+ *
+ * Copyright 2015 Вeб-студия GearMagic
+ * Copyright Anton Tivonenko <anton.tivonenko@gmail.com>
+ * https://gearmagic.ru/license/
+ */
+
+/**
+ * Панель вкладок формы.
+ */
+/* Значок "Общее" */
+.gm-references-mediadialogs__icon-common { background-image: url("../images/icon-tab-common.svg"); }
+/* Значок "Вид" */
+.gm-references-mediadialogs__icon-view { background-image: url("../images/icon-tab-view.svg"); }
+/* Значок "Медиапапки" */
+.gm-references-mediadialogs__icon-folders { background-image: url("../images/icon-tab-folders.svg"); }
+/* Папка */
+.gm-references-mediadialogs__folder {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
