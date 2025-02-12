@@ -1,0 +1,451 @@
+[
+    {
+        "xtype": "tabpanel",
+        "activeTab": 0,
+        "ui": "flat-light",
+        "anchor": "100% 100%",
+        "autoRender": true,
+        "items": [
+            {
+                "title": "#Common",
+                "iconCls": "g-icon-svg g-icon-svg_size_16 g-icon-m_color_tab gm-references-mediadialogs__icon-common",
+                "bodyPadding": "10",
+                "autoScroll": true,
+                "layout": "anchor",
+                "defaults": {
+                    "labelWidth": 100,
+                    "labelAlign": "right",
+                    "width": "100%"
+                },
+                "items": [
+                    {
+                        "xtype": "textfield",
+                        "maxLength": 255,
+                        "fieldLabel": "#Name",
+                        "name": "name",
+                        "allowBlank": false
+                    },
+                    {
+                        "xtype": "textfield",
+                        "maxLength": 100,
+                        "fieldLabel": "#Alias",
+                        "name": "alias",
+                        "allowBlank": false
+                    },
+                    {
+                        "xtype": "checkbox",
+                        "fieldLabel": "#Enabled",
+                        "ui": "switch",
+                        "name": "enabled",
+                        "inputValue": 1
+                    },
+                    {
+                        "xtype": "fieldset",
+                        "title": "#Dialog folder",
+                        "style": "margin-top:20px",
+                        "defaults": {
+                            "labelWidth": 100,
+                            "labelAlign": "right",
+                            "width": "100%"
+                        },
+                        "items": [
+                            {
+                                "xtype": "textfield",
+                                "fieldLabel": "#Folder name",
+                                "name": "folderName",
+                                "tooltip": "#The name of the dialog folder that will be displayed in the root folder of the dialog folder tree panel",
+                                "maxLength": 255,
+                                "allowBlank": true
+                            },
+                            {
+                                "xtype": "g-field-combobox",
+                                "fieldLabel": "#Media folder",
+                                "tooltip": "#The profile of the selected media folder will be used to load files, and its local path will be used to select the file",
+                                "name": "folderId",
+                                "anchor": "100%",
+                                "hiddenName": "folderId",
+                                "store": {
+                                    "fields": ["id", "name"],
+                                    "proxy": {
+                                        "type": "ajax",
+                                        "url": ["@backend/references/media-folders/trigger/combo"],
+                                        "extraParams": {"combo": "folders", "onlyParent": 0},
+                                        "reader": {
+                                            "type": "json",
+                                            "rootProperty": "data"
+                                        }
+                                    }
+                                },
+                                "displayField": "name",
+                                "valueField": "id",
+                                "editable": false
+                            }
+                        ]
+                    },
+                    {
+                        "xtype": "label",
+                        "ui": "fieldset-comment",
+                        "html": "#The dialog folder is the main folder for file selection"
+                    },
+                    {
+                        "xtype": "fieldset",
+                        "title": "#Selectable file / folder",
+                        "style": "margin-top:20px",
+                        "defaults": {
+                            "labelWidth": 100,
+                            "labelAlign": "right",
+                            "width": "100%"
+                        },
+                        "items": [
+                            {
+                                "xtype": "textfield",
+                                "maxLength": 255,
+                                "fieldLabel": "#Cut off the path",
+                                "tooltip": "#Cuts off part of the path from the selected file or folder when substituting it into the field",
+                                "name": "browseStripe"
+                            },
+                            {
+                                "xtype": "combobox",
+                                "fieldLabel": "#Choose",
+                                "tooltip": "#Ability to select only specified elements (file/folder) of the dialog",
+                                "name": "browseType",
+                                "hiddenName": "browseType",
+                                "store": {
+                                    "fields": ["id", "name"],
+                                    "data": [
+                                        ["all", "#All (file or folder)"], 
+                                        ["file", "#File"],
+                                        ["folder", "#Folder"]
+                                    ]
+                                },
+                                "displayField": "name",
+                                "valueField": "id",
+                                "queryMode": "local",
+                                "editable": false,
+                                "width": 300
+                            },
+                            {
+                                "xtype": "textfield",
+                                "maxLength": 255,
+                                "fieldLabel": "#Label",
+                                "tooltip": "#File/folder selection field label name",
+                                "name": "browseLabel"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "#View",
+                "iconCls": "g-icon-svg g-icon-svg_size_16 g-icon-m_color_tab gm-references-mediadialogs__icon-view",
+                "bodyPadding": "10",
+                "autoScroll": true,
+                "layout": "anchor",
+                "defaults": {
+                    "labelWidth": 100,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "label",
+                        "ui": "note",
+                        "style": "margin: -10px -10px 10px -10px",
+                        "html": "#Dialog box element display options"
+                    },
+                    {
+                        "xtype": "fieldset",
+                        "title": "#Toolbar",
+                        "items": [
+                            {
+                                "xtype": "textarea",
+                                "width": "100%",
+                                "height": 50,
+                                "name": "toolbar"
+                            }
+                        ]
+                    },
+                    {
+                        "xtype": "fieldset",
+                        "title": "#Folder tree panel",
+                        "layout": "column",
+                        "style": "margin-top:10px",
+                        "items": [
+                            {
+                                "layout": "anchor",
+                                "columnWidth": 0.5,
+                                "defaults": {
+                                    "labelWidth": 240,
+                                    "labelAlign": "right"
+                                },
+                                "items": [
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show folder icons",
+                                        "name": "options[showTreeFolderIcons]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "numberfield",
+                                        "fieldLabel": "#number of folders to expand",
+                                        "labelWidth": 210,
+                                        "name": "options[totalExpandedFolders]",
+                                        "width": 300,
+                                        "minValue": 50,
+                                        "maxValue": 1000,
+                                        "value": 1000
+                                    },
+                                    {
+                                        "xtype": "numberfield",
+                                        "fieldLabel": "#panel size",
+                                        "tooltip": "#Width of the folder tree panel in pixels",
+                                        "labelWidth": 210,
+                                        "name": "options[treeWidth]",
+                                        "width": 300,
+                                        "minValue": 150,
+                                        "value": 300
+                                    },
+                                    {
+                                        "xtype": "combo",
+                                        "fieldLabel": "#panel position",
+                                        "labelWidth": 210,
+                                        "width": 300,
+                                        "name": "options[treePosition]",
+                                        "queryMode": "local", 
+                                        "displayField": "name",
+                                        "valueField": "position",
+                                        "editable": false,
+                                        "value": "left",
+                                        "store": {
+                                            "fields": ["position", "name"],
+                                            "data": [
+                                                {"position": "left", "name": "#left"},
+                                                {"position": "right", "name": "#right"}
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "layout": "anchor",
+                                "columnWidth": 0.5,
+                                "defaults": {
+                                    "labelWidth": 240,
+                                    "labelAlign": "right"
+                                },
+                                "items": [
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show root folder",
+                                        "name": "options[showTreeRoot]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#resize panel",
+                                        "name": "options[resizeTree]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show arrows",
+                                        "name": "options[useTreeArrows]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#sort folders",
+                                        "name": "options[sortTreeFolders]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show panel",
+                                        "name": "options[showTree]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "xtype": "fieldset",
+                        "title": "#Files grid",
+                        "layout": "column",
+                        "items": [
+                            {
+                                "layout": "anchor",
+                                "columnWidth": 0.5,
+                                "defaults": {
+                                    "labelWidth": 250,
+                                    "labelAlign": "right"
+                                },
+                                "items": [
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#double click on folder/file",
+                                        "name": "options[dblClick]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show lines between columns",
+                                        "name": "options[showGridColumnLines]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show lines between lines",
+                                        "name": "options[showGridRowLines]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#line alternation",
+                                        "name": "options[stripeGridRows]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show icons",
+                                        "name": "options[showGridIcons]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#show popup menus",
+                                        "name": "options[showPopupMenu]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "numberfield",
+                                        "fieldLabel": "#number of files and folders per page",
+                                        "labelWidth": 220,
+                                        "name": "options[gridPageSize]",
+                                        "width": 295,
+                                        "minValue": 50,
+                                        "maxValue": 1000,
+                                        "value": 1000
+                                    }
+                                ]
+                            },
+                            {
+                                "layout": "anchor",
+                                "columnWidth": 0.5,
+                                "defaults": {
+                                    "labelWidth": 240,
+                                    "labelAlign": "right"
+                                },
+                                "items": [
+                                    {
+                                        "xtype": "displayfield",
+                                        "fieldLabel": "#Show columns",
+                                        "ui": "parameter"
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#column \"Size\"",
+                                        "name": "options[showSizeColumn]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#column \"Type\"",
+                                        "name": "options[showTypeColumn]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#column \"MIME\"",
+                                        "name": "options[showMimeTypeColumn]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#column \"Permissions\"",
+                                        "name": "options[showPermissionsColumn]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#column \"Access time\"",
+                                        "name": "options[showAccessTimeColumn]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    },
+                                    {
+                                        "xtype": "checkbox",
+                                        "ui": "switch",
+                                        "fieldLabel": "#column \"Change time\"",
+                                        "name": "options[showChangeTimeColumn]",
+                                        "inputValue": 1,
+                                        "checked": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "#Media folders",
+                "iconCls": "g-icon-svg g-icon-svg_size_16  gm-references-mediadialogs__icon-folders",
+                "bodyPadding": "10",
+                "autoScroll": true,
+                "layout": "anchor",
+                "defaults": {
+                    "labelWidth": 100,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "label",
+                        "ui": "note",
+                        "style": "margin: -10px -10px 10px -10px",
+                        "html": [
+                            "#The selected media folders tree dialog box provides the ability to view and select files and folders of the appropriate type", 
+                            "#The root element of the tree (the \"Media files\" folder) must be selected",
+                            "#To change the media folder tree, see the Media Folder Structure reference"
+                        ]
+                    },
+                    {
+                        "xtype": "container",
+                        "items": "@mediaFolders"
+                    }
+                ]
+            }
+        ]
+    }
+]
