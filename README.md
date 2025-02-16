@@ -4,6 +4,15 @@
 
 Этот модуль является расширением для [модуля "Справочники"](https://github.com/gearmagicru/gm-be-references).
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/gearmagicru/gm-be-references-media_dialogs.svg)](https://packagist.org/packages/gearmagicru/gm-be-references-media_dialogs)
+[![Total Downloads](https://img.shields.io/packagist/dt/gearmagicru/gm-be-references-media_dialogs.svg)](https://packagist.org/packages/gearmagicru/gm-be-references-media_dialogs)
+[![Author](https://img.shields.io/badge/author-anton.tivonenko@gmail.com-blue.svg)](mailto:anton.tivonenko@gmail)
+[![Source Code](https://img.shields.io/badge/source-gearmagicru/gm--be--references--media__dialogs-blue.svg)](https://github.com/gearmagicru/gm-be-references-media_dialogs)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gearmagicru/gm-be-references-media_dialogs/blob/master/LICENSE)
+![Component type: extension](https://img.shields.io/badge/component%20type-extension-green.svg)
+![Component ID: gm.be.references.media_dialogs](https://img.shields.io/badge/component%20id-gm.be.references.media__dialogs-green.svg)
+![php 8.2+](https://img.shields.io/badge/php-min%208.2-red.svg)
+
 ## Скриншот
 <img src="https://github.com/gearmagicru/gm-be-references-media_dialogs/blob/main/assets/help/grid.png?raw=true">
 
