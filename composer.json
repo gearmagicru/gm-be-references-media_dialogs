@@ -1,14 +1,7 @@
 {
     "name": "gearmagicru/gm-be-references-media_dialogs",
     "description": "Control Panel extension (module) \"Media dialogs\"",
-    "keywords": [
-        "gm",
-        "gearmagic",
-        "GM Panel",
-        "extension",
-        "references",
-        "media dialogs"
-    ],
+    "keywords": ["gearmagic", "gm-panel", "gm-component", "gm-extension", "extension", "references", "media"],
     "homepage": "https://apps.gearmagic.ru/component/gm-be-references-media_dialogs",
     "type": "component",
     "license": "MIT",
